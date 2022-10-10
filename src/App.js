@@ -1,6 +1,6 @@
 import "./App.css";
 import React from "react";
-
+import { CardInput } from "./components/card-input.component";
 
 class App extends React.Component {
   constructor(state) {
@@ -9,18 +9,24 @@ class App extends React.Component {
       cardNumsArr: [],
     };
   }
-  handlerTakeInput = (e) => {
-    const arr = e.target.value.split("").map((el) => parseInt(el));
+
+
+  
+  handlerTakeInput = (inputValue) => {
+    const arr = inputValue.split("").map((el) => parseInt(el));
     this.setState({ cardNumsArr: arr });
   };
+
+
 
 
   render() {
     return (
       <div className="App">
         <h1>Card number validator : {this.state.cardNumsArr}</h1>
-        <form action="#" onChange={this.handlerTakeInput}>
-          <input type='tel'/>
+        <form action="#">
+          {/* <input type='tel'/> */}
+          <CardInput onChange={this.handlerTakeInput} />
         </form>
         <h1>Display Validator</h1>
       </div>
