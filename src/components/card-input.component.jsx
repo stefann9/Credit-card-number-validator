@@ -6,6 +6,6 @@ export class CardInput extends React.Component{
         this.props.onChange(input)
     }
     render(){
-        return (<input type="tel" onChange={this.onChange}/>)
+        return (<input type="tel" onChange={this.onChange} inputmode="numeric" pattern="[0-9\s]{13,19}"  maxlength="19" placeholder="xxxx xxxx xxxx xxxx"/>)
     }
 }
