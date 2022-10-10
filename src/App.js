@@ -1,22 +1,25 @@
 import "./App.css";
 import React from "react";
 import { CardInput } from "./components/card-input.component";
+import { DisplayValidCard } from "./components/display-valid-card";
 
 class App extends React.Component {
   constructor(state) {
     super(state);
     this.state = {
       cardNumsArr: [],
+      validCard: "",
     };
   }
 
   handlerTakeInput = (inputValue) => {
     const arr = inputValue.split("").map((el) => parseInt(el));
-    this.setState({ cardNumsArr: arr });
+    const isValid = this.validateCard(arr);
+    this.setState({ cardNumsArr: arr, validCard:isValid });
   };
 
   validateCard = (arr) => {
-    // use Luhn algorithm to check if credit card is valid
+    // use Luhn algorithm to check if the credit card number is valid
     let count = 1;
     let doubleDigits = [];
     if (arr.length >= 10 && arr.length <= 19) {
@@ -36,23 +39,22 @@ class App extends React.Component {
       const sum = doubleDigits.reduce(
         (previousValue, currentValue) => previousValue + currentValue
       );
-
-      return sum % 10 === 0;
+      const isValid = sum % 10 === 0 ? "The card number is valid" : "The card number is invalid";
+      return isValid
     } else {
-      return false;
+      return 'Please enter a number with min 10 digits and max 19 digits'
     }
   };
 
   render() {
+
     return (
       <div className="App">
         <h1>Card number validator : {this.state.cardNumsArr}</h1>
         <form action="#">
           <CardInput onChange={this.handlerTakeInput} />
         </form>
-        <h1>
-          card is {this.validateCard(this.state.cardNumsArr) ? "true" : "false"}
-        </h1>
+          <DisplayValidCard validCard={this.state.validCard} />
       </div>
     );
   }
