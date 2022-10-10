@@ -9,13 +9,17 @@ class App extends React.Component {
       cardNumsArr: [],
     };
   }
-  
+  handlerTakeInput = (e) => {
+    const arr = e.target.value.split("").map((el) => parseInt(el));
+    this.setState({ cardNumsArr: arr });
+  };
+
 
   render() {
     return (
       <div className="App">
         <h1>Card number validator : {this.state.cardNumsArr}</h1>
-        <form action="#">
+        <form action="#" onChange={this.handlerTakeInput}>
           <input type='tel'/>
         </form>
         <h1>Display Validator</h1>
