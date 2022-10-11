@@ -1,7 +1,8 @@
 import React from "react";
+import "./display-valid-card.style.css";
 
 export class DisplayValidCard extends React.Component {
-  test;
+  
 
   validateCard = (arr) => {
     // use Luhn algorithm to check if the credit card number is valid
@@ -32,11 +33,12 @@ export class DisplayValidCard extends React.Component {
   render() {
     const cardNumsArr = this.props.cardNumsArr;
     const isValid = this.validateCard(cardNumsArr) ? "valid" : "invalid";
-    return (
-      <p className={isValid}>
-        {cardNumsArr.length >= 10
-          ? `The credit card is ${isValid}`
-          : `We'll check your credit card number against the Luhn Algorithm to see if it is a valid number.`}
+    return cardNumsArr.length >= 10 ? (
+      <p className={isValid}>{`The credit card number is ${isValid}`} </p>
+    ) : (
+      <p>
+        We'll check your credit card number against the Luhn Algorithm to see if
+        it is a valid number.
       </p>
     );
   }
