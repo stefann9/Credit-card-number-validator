@@ -1,7 +1,7 @@
 import "./App.css";
 import React from "react";
-import { CardInput } from "./components/card-input.component";
-import { DisplayValidCard } from "./components/display-valid-card";
+import { CardInput } from "./components/card-input/card-input.component";
+import { DisplayValidCard } from "./components/display-valid-card/display-valid-card.component";
 
 class App extends React.Component {
   constructor(state) {
